@@ -20,7 +20,7 @@ class ZOffset(octoprint.plugin.TemplatePlugin,
 
 		##~~ Set default settings
 		def get_settings_defaults(self):
-			return dict(zOffset=0.2)
+			return dict(zOffset=0.0)
 
 
 		def get_template_configs(self):
@@ -28,5 +28,23 @@ class ZOffset(octoprint.plugin.TemplatePlugin,
 				dict(type="settings", custom_bindings=False)
 			]
 
-__plugin_implementations__ = [ZOffset()]
+		def script_hook(self, comm, script_type, script_name):
+			if not script_type == "gcode":
+				return None
+	
+			if script_name == "beforePrintStarted":
+				return ["M206 Z" + self._settings.get_int(["zOffset"])], None
+
+			if script_name == "afterPrinterConnected":
+				return ["M206 Z" + self._settings.get_int(["zOffset"])], None
+
+def __plugin_init__():
+    global __plugin_implementations__
+    global __plugin_hooks__
+    plugin = ZOffset()
+    __plugin_implementations__ = [plugin]
+    __plugin_hooks__ = {
+        "octoprint.comm.protocol.scripts": plugin.script_hook
+    }
+
 __plugin_name__ = "zOffset"

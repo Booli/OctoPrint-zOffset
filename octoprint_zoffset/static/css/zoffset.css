@@ -1,4 +1,13 @@
-#Xeed_section {
-	float: right;
-	clear: both;
+#control .box {
+	height: 40px;
+	width: 40px;
+	font-size: 1.4em;
+}
+
+#control .control-box {
+	height: 40px;
+}
+
+#control form{
+	margin: 0 0 0 0;
 }
