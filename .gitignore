@@ -18,7 +18,7 @@ Cura/preferences.ini
 build
 dist
 pypy
-OctoPrint.egg-info
+OctoPrint_zOffset.egg-info
 *.orig
 
 *.codekit

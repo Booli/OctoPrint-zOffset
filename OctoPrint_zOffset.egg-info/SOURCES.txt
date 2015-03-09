@@ -1,9 +1,0 @@
-setup.py
-OctoPrint_zOffset.egg-info/PKG-INFO
-OctoPrint_zOffset.egg-info/SOURCES.txt
-OctoPrint_zOffset.egg-info/dependency_links.txt
-OctoPrint_zOffset.egg-info/entry_points.txt
-OctoPrint_zOffset.egg-info/not-zip-safe
-OctoPrint_zOffset.egg-info/requires.txt
-OctoPrint_zOffset.egg-info/top_level.txt
-octoprint_zoffset/__init__.py
