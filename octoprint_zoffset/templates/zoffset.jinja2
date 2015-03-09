@@ -1,0 +1,30 @@
+<div id="zOffset_dialog" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+        <h3>{{ _('Calibrate the Xeed z-Offset') }}</h3>
+    </div>
+    <div class="modal-body">
+        <p>Place a 0.05 flusher between the nozzle and the bed. </br>Press the button Start Calibration, the bed will home and then move close to the nozzle. Use the up arrow until the nozzle is against the flusher. You can use the down arrow if you think you are too close. Press 'Save' to save the new z-Offset.</p>
+        <div class="jog-panel" style="display: none;" data-bind="visible: loginState.isUser">
+            <div>
+                <button class="btn control-box pull-left" data-bind="enable: control.isOperational() && !control.isPrinting() && loginState.isUser() && !startedCalibration(), click: function() { startZcalibration()}">{{ _('Start Calibration') }}</button>
+                <button class="btn box pull-right" data-bind="enable: control.isOperational() && !control.isPrinting() && startedCalibration(), click: function() { increaseZ(0.05) }"><i class="icon-arrow-up"></i></button>
+                <button class="btn box pull-right" data-bind="enable: control.isOperational() && !control.isPrinting() && startedCalibration(), click: function() { decreaseZ(0.05) }"><i class="icon-arrow-down"></i></button>
+            </div>
+            <div class="input-append pull-right" >
+                <input type="text" class="input-mini text-right" data-bind="enable: false, value: settings.settings.plugins.zoffset.zOffset" id="old-zOffset">
+                <span class="add-on">mm</span>
+                <span class="add-on">Old z-Offset</span>
+            </div>
+            <div class="input-append pull-right">
+                <input type="text" class="input-mini text-right" data-bind="enable: false, value: calibration_zOffset" id="calibration-zOffset">
+                <span class="add-on">mm</span>
+                <span class="add-on">Calibration   </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Cancel') }}</a>
+        <button class="btn btn-success confirmation_dialog_acknowledge" data-bind="enable: startedCalibration(), click: function() {saveCalibration()}">{{ _('Save') }}</button>
+    </div>
+</div>
